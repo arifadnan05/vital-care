@@ -2,10 +2,16 @@ import './register.css'
 import logo from '../../../../public/logo.png'
 import { useForm } from 'react-hook-form'
 import useAuth from '../../../Hooks/useAuth'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import SocialLogin from '../SocialLogin/SocialLogin'
 
 const Register = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
 
-    const {createUser} = useAuth()
+    const { createUser, updateUserProfile } = useAuth()
 
     const {
         register,
@@ -13,20 +19,30 @@ const Register = () => {
         formState: { errors },
     } = useForm()
 
-    const onSubmit = (data) => {
-        const { email, password } = data;
-        createUser(email, password)
-            .then((result) => {
-                console.log(result.user)
-            })
-            .catch((error) => {
-                console.error(error)
-            })
+    const onSubmit = async (data) => {
+        const { email, password, photo, userName } = data;
+        const formData = new FormData()
+        formData.append('image', photo[0])
+        try {
+
+            const { data } = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`, formData)
+
+            const result = await createUser(email, password)
+            console.log(result)
+            await updateUserProfile(userName, data.data.display_url)
+
+            navigate(location?.state ? location.state : '/')
+            toast.success('SignUp Success')
+
+        } catch (err) {
+            console.log(err)
+        }
+
     }
     return (
         <div className='bg-image'>
-            <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-6xl">
-                <div className="hidden bg-cover lg:block lg:w-1/2 bg-[url('https://images.unsplash.com/photo-1606660265514-358ebbadc80d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1575&q=80')]"></div>
+            <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-5xl">
+                <div className="hidden bg-cover lg:block lg:w-1/2 bg-[url('https://img.freepik.com/premium-vector/nice-good-looking-young-doctor-standing-show-thumb-up_97632-3425.jpg')]"></div>
 
                 <section className="bg-white mx-auto dark:bg-gray-900">
                     <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
@@ -35,16 +51,8 @@ const Register = () => {
                                 <img className="w-auto h-7 sm:h-8" src={logo} />
                             </div>
 
-                            <div className="flex items-center justify-center mt-6">
-                                <a href="#" className="w-1/3 pb-4 font-medium text-center text-gray-500 capitalize border-b dark:border-gray-400 dark:text-gray-300">
-                                    sign in
-                                </a>
-
-                                <a href="#" className="w-1/3 pb-4 font-medium text-center text-gray-800 capitalize border-b-2 border-blue-500 dark:border-blue-400 dark:text-white">
-                                    sign up
-                                </a>
-                            </div>
-
+                            <SocialLogin></SocialLogin>
+                            <div className='divider'>OR</div>
                             <div className="relative flex items-center mt-8">
                                 <span className="absolute">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -103,9 +111,9 @@ const Register = () => {
                                 </button>
 
                                 <div className="mt-6 text-center ">
-                                    <a href="#" className="text-sm text-blue-500 hover:underline dark:text-blue-400">
+                                    <Link to='/login' href="#" className="text-sm text-blue-500 hover:underline dark:text-blue-400">
                                         Already have an account?
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </form>

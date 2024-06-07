@@ -1,5 +1,6 @@
 import { FaCartPlus } from 'react-icons/fa6'
 import logo from '../../../public/logo.png'
+import { Link } from 'react-router-dom'
 const Navbar = () => {
 
     const navLinks = <>
@@ -50,7 +51,7 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
 
-                    <button className="btn">Join Us</button>
+                    <Link to='/login'><button className="btn">Join Us</button></Link>
 
 
                     {/* {
