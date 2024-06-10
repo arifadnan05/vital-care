@@ -1,16 +1,13 @@
 import { FaCartPlus } from 'react-icons/fa6'
 import logo from '../../../public/logo.png'
 import { Link } from 'react-router-dom'
+import useAuth from '../../Hooks/useAuth'
+import Container from '../Container/Container'
 const Navbar = () => {
+    const { user, logOut } = useAuth()
 
     const navLinks = <>
         <li><a>Home</a></li>
-        {/* <label className="cursor-pointer grid place-items-center ml-2">
-            <input type="checkbox" value="dark" className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2" />
-            <svg className="col-start-1 row-start-1 stroke-base-100 fill-base-100" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5" /><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" /></svg>
-            <svg className="col-start-2 row-start-1 stroke-base-100 fill-base-100" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-        </label> */}
-
         <li><a>Shop</a></li>
         <li>
             <details>
@@ -28,9 +25,10 @@ const Navbar = () => {
         </li>
         <li className='text-3xl'><a><FaCartPlus /></a></li>
     </>
+
     return (
 
-        <div>
+        <Container>
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -51,10 +49,12 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
 
-                    <Link to='/login'><button className="btn">Join Us</button></Link>
+                    {
+                        !user && <Link to='/login'><button className="btn">Join Us</button></Link>
+                    }
 
 
-                    {/* {
+                    {
                         user && <div className='dropdown dropdown-end z-50'>
                             <div
                                 tabIndex={0}
@@ -74,21 +74,22 @@ const Navbar = () => {
                                 className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52'>
 
 
-                                <p className="ml-4 mb-4">{user?.displayName}</p>
+                                <p className="ml-4 mb-4 cursor-pointer hover:bg-gray-200 block py-1 hover:rounded-md">Update Profile</p>
+                                <p className="ml-4 mb-4 cursor-pointer hover:bg-gray-200 block py-1 hover:rounded-md">Dashboard</p>
 
                                 <li className='mt-2'>
-                                    <button onClick={handleLogOut} className='bg-gray-200 block text-center'>Logout</button>
+                                    <button onClick={logOut} className='bg-gray-200 block text-center'>Logout</button>
                                 </li>
                             </ul>
                         </div>
-                    } */}
+                    }
 
 
 
 
                 </div>
             </div>
-        </div>
+        </Container>
     )
 }
 
