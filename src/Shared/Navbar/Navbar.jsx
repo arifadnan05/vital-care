@@ -75,7 +75,9 @@ const Navbar = () => {
 
 
                                 <p className="ml-4 mb-4 cursor-pointer hover:bg-gray-200 block py-1 hover:rounded-md">Update Profile</p>
-                                <p className="ml-4 mb-4 cursor-pointer hover:bg-gray-200 block py-1 hover:rounded-md">Dashboard</p>
+                                <Link to='/dashboard'>
+                                    <p className="ml-4 mb-4 cursor-pointer hover:bg-gray-200 block py-1 hover:rounded-md">Dashboard</p>
+                                </Link>
 
                                 <li className='mt-2'>
                                     <button onClick={logOut} className='bg-gray-200 block text-center'>Logout</button>

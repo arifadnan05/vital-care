@@ -6,10 +6,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import SocialLogin from '../SocialLogin/SocialLogin'
+import useAxiosPublic from '../../../Hooks/useAxiosPublic'
 
 const Register = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosPublic = useAxiosPublic()
 
     const { createUser, updateUserProfile } = useAuth()
 
@@ -20,17 +22,21 @@ const Register = () => {
     } = useForm()
 
     const onSubmit = async (data) => {
-        const { email, password, photo, userName } = data;
+        const { email, password, photo, name } = data;
         const formData = new FormData()
         formData.append('image', photo[0])
         try {
 
             const { data } = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`, formData)
 
-            const result = await createUser(email, password)
-            console.log(result)
-            await updateUserProfile(userName, data.data.display_url)
+            await createUser(email, password)
 
+            await updateUserProfile(name, data.data.display_url)
+            const userInfo = {
+                name: name,
+                email: email
+            }
+            axiosPublic.post('/users', userInfo)
             navigate(location?.state ? location.state : '/')
             toast.success('SignUp Success')
 
@@ -60,8 +66,8 @@ const Register = () => {
                                     </svg>
                                 </span>
 
-                                <input type="text" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="UserName" {...register("userName", { required: true })} />
-                                {errors.userName && <span>This field is required</span>}
+                                <input type="text" className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40" placeholder="UserName" {...register("name", { required: true })} />
+                                {errors.name && <span>This field is required</span>}
                             </div>
 
                             <label htmlFor="dropzone-file" className="flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-lg cursor-pointer dark:border-gray-600 dark:bg-gray-900">

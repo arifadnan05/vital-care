@@ -1,17 +1,24 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import { toast } from "react-toastify";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const SocialLogin = () => {
     const { googleSingIn } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
+    const axiosPublic = useAxiosPublic()
     const handleGoogleSignUp = async () => {
-        try{
-            await googleSingIn()
+        try {
+            const result = await googleSingIn()
+            const userInfo = {
+                email: result.user?.email,
+                name: result.user?.displayName
+            }
+            axiosPublic.post('/users', userInfo)
             navigate(location?.state ? location.state : '/')
             toast.success('Login Successful')
-        }catch(err) {
+        } catch (err) {
             console.log(err)
         }
     }
