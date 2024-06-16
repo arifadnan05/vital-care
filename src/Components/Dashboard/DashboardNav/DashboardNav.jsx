@@ -1,9 +1,11 @@
 import { HiMenuAlt1 } from "react-icons/hi"
 import { NavLink } from "react-router-dom"
 import useAdmin from "../../../Hooks/useAdmin"
+import useSeller from "../../../Hooks/useSeller";
 
 const DashboardNav = () => {
     const [isAdmin] = useAdmin();
+    const [isSeller] = useSeller()
     return (
         <div>
             <div className="drawer lg:drawer-open">
@@ -30,10 +32,16 @@ const DashboardNav = () => {
                         <div className="divider"></div>
 
                         {/* Seller Routes */}
-                        <li>Statistics</li>
-                        <li>Manage Medicines</li>
-                        <li>Payment History</li>
-                        <li>Ask For Advertisement</li>
+
+                        {
+                            isSeller && <>
+                                <NavLink><li>Statistics</li></NavLink>
+                                <NavLink><li>Manage Medicines</li></NavLink>
+                                <NavLink><li>Payment History</li></NavLink>
+                                <NavLink><li>Ask For Advertisement</li></NavLink>
+                            </>
+                        }
+                        
                         {/* User Routes */}
                         <div className="divider"></div>
                         <li>Payment history</li>
