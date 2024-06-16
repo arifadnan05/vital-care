@@ -5,6 +5,7 @@ import Login from "../Components/Pages/Login/Login";
 import Home from "../Components/Pages/Home/Home";
 import Dashboard from "../Components/Dashboard/Dashboard";
 import PrivetRoute from "./PrivetRoute";
+import ManageUsers from "../Components/Dashboard/ManageUsers/ManageUsers";
 
 const router = createBrowserRouter([
     {
@@ -30,7 +31,8 @@ const router = createBrowserRouter([
         element: <PrivetRoute><Dashboard></Dashboard></PrivetRoute>,
         children: [
             {
-                
+                path: 'manage-users',
+                element: <ManageUsers></ManageUsers>
             }
         ]
     }

@@ -16,7 +16,7 @@ const DashboardNav = () => {
                     <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content text-lg gap-y-6">
                         {/* Admin Routes */}
                         <NavLink to="/dashboard/com"><li>Statistics</li></NavLink>
-                        <NavLink><li>Manage Users</li></NavLink>
+                        <NavLink to="/dashboard/manage-users"><li>Manage Users</li></NavLink>
                         <NavLink><li>Manage Category</li></NavLink>
                         <NavLink><li>Payment Management</li></NavLink>
                         <NavLink><li>Sales Report</li></NavLink>

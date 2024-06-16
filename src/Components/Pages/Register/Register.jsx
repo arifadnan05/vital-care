@@ -22,7 +22,7 @@ const Register = () => {
     } = useForm()
 
     const onSubmit = async (data) => {
-        const { email, password, photo, name } = data;
+        const { email, password, photo, name, role } = data;
         const formData = new FormData()
         formData.append('image', photo[0])
         try {
@@ -34,7 +34,9 @@ const Register = () => {
             await updateUserProfile(name, data.data.display_url)
             const userInfo = {
                 name: name,
-                email: email
+                email: email,
+                image: data.data.display_url,
+                role: role
             }
             axiosPublic.post('/users', userInfo)
             navigate(location?.state ? location.state : '/')
@@ -95,8 +97,8 @@ const Register = () => {
 
                                 <select className='block w-full py-3 text-gray-700 bg-white border rounded-lg px-4 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40' {...register("role")}>
                                     <option disabled>Select Role</option>
-                                    <option value="male">User</option>
-                                    <option value="other">Seller</option>
+                                    <option value="user">User</option>
+                                    <option value="seller">Seller</option>
                                 </select>
                             </div>
 
