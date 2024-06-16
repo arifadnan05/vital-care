@@ -5,12 +5,15 @@ import DashboardNav from "./DashboardNav/DashboardNav";
 const Dashboard = () => {
     const isAdmin = true;
     return (
-        <Container> 
-            <div>
-                <DashboardNav></DashboardNav>
-            </div>
-            <div className="flex-1">
-                <Outlet></Outlet>
+        <Container>
+            <div className="flex">
+                <div className="w-64">
+                    <DashboardNav></DashboardNav>
+                </div>
+                <div className="flex-1 ml-28">
+                    <Outlet></Outlet>
+                </div>
+
             </div>
         </Container>
     )

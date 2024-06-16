@@ -27,7 +27,12 @@ const router = createBrowserRouter([
     },
     {
         path: 'dashboard',
-        element: <PrivetRoute><Dashboard></Dashboard></PrivetRoute>
+        element: <PrivetRoute><Dashboard></Dashboard></PrivetRoute>,
+        children: [
+            {
+                
+            }
+        ]
     }
 ])
 export default router;

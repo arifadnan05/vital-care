@@ -15,7 +15,8 @@ const DashboardNav = () => {
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content text-lg gap-y-6">
                         {/* Admin Routes */}
-                        <NavLink><li>Statistics</li></NavLink>
+                        <NavLink to="/dashboard/com"><li>Statistics</li></NavLink>
+                        <NavLink><li>Manage Users</li></NavLink>
                         <NavLink><li>Manage Category</li></NavLink>
                         <NavLink><li>Payment Management</li></NavLink>
                         <NavLink><li>Sales Report</li></NavLink>
