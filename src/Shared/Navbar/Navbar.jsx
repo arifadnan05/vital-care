@@ -1,13 +1,13 @@
 import { FaCartPlus } from 'react-icons/fa6'
 import logo from '../../../public/logo.png'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import useAuth from '../../Hooks/useAuth'
 import Container from '../Container/Container'
 const Navbar = () => {
     const { user, logOut } = useAuth()
 
     const navLinks = <>
-        <li><a>Home</a></li>
+        <NavLink to="/"> <li><a>Home</a></li></NavLink>
         <li><a>Shop</a></li>
         <li>
             <details>
