@@ -3,7 +3,7 @@ import Container from "../../Shared/Container/Container";
 const Dashboard = () => {
     const isAdmin = true;
     return (
-        <Container>
+        <Container> 
             <div>
                 <h1>This is dashboard</h1>
             </div>
