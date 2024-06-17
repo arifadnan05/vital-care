@@ -3,7 +3,6 @@ import Container from "../../Shared/Container/Container";
 import DashboardNav from "./DashboardNav/DashboardNav";
 
 const Dashboard = () => {
-    const isAdmin = true;
     return (
         <Container>
             <div className="flex">

@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom"
 import useAdmin from "../../../Hooks/useAdmin"
 import useSeller from "../../../Hooks/useSeller";
 import useUser from "../../../Hooks/useUser";
+import logo from '../../../../public/logo.png'
 
 const DashboardNav = () => {
     const [isAdmin] = useAdmin();
@@ -19,7 +20,8 @@ const DashboardNav = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content text-lg gap-y-6">
+                    <ul className="menu p-4 w-80 min-h-full bg-black text-base-content text-lg gap-y-6">
+                        <img className="w-[220px]" src={logo} />
                         {/* Admin Routes */}
                         {
                             isAdmin && <>
@@ -37,7 +39,7 @@ const DashboardNav = () => {
                         {
                             isSeller && <>
                                 <NavLink><li>Statistics</li></NavLink>
-                                <NavLink><li>Manage Medicines</li></NavLink>
+                                <NavLink to='/dashboard/manage-medicine'><li>Manage Medicines</li></NavLink>
                                 <NavLink><li>Payment History</li></NavLink>
                                 <NavLink><li>Ask For Advertisement</li></NavLink>
                             </>

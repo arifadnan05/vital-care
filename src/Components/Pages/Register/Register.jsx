@@ -6,12 +6,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import SocialLogin from '../SocialLogin/SocialLogin'
-import useAxiosPublic from '../../../Hooks/useAxiosPublic'
+import useAxiosSecure from '../../../Hooks/useAxiosSecure'
 
 const Register = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure()
 
     const { createUser, updateUserProfile } = useAuth()
 
@@ -38,7 +38,7 @@ const Register = () => {
                 image: data.data.display_url,
                 role: role
             }
-            axiosPublic.post('/users', userInfo)
+            axiosSecure.post('/users', userInfo)
             navigate(location?.state ? location.state : '/')
             toast.success('SignUp Success')
 

@@ -6,6 +6,7 @@ import Home from "../Components/Pages/Home/Home";
 import Dashboard from "../Components/Dashboard/Dashboard";
 import PrivetRoute from "./PrivetRoute";
 import ManageUsers from "../Components/Dashboard/ManageUsers/ManageUsers";
+import ManageMedicine from "../Components/Dashboard/SellerDashboard/ManageMedicine/ManageMedicine";
 
 const router = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
             {
                 path: 'manage-users',
                 element: <ManageUsers></ManageUsers>
+            },
+            {
+                path: 'manage-medicine',
+                element: <ManageMedicine></ManageMedicine>
             }
         ]
     }
