@@ -2,10 +2,12 @@ import { HiMenuAlt1 } from "react-icons/hi"
 import { NavLink } from "react-router-dom"
 import useAdmin from "../../../Hooks/useAdmin"
 import useSeller from "../../../Hooks/useSeller";
+import useUser from "../../../Hooks/useUser";
 
 const DashboardNav = () => {
     const [isAdmin] = useAdmin();
     const [isSeller] = useSeller()
+    const [isUser] = useUser()
     return (
         <div>
             <div className="drawer lg:drawer-open">
@@ -29,7 +31,6 @@ const DashboardNav = () => {
                                 <NavLink><li>Manage banner Advertise</li></NavLink>
                             </>
                         }
-                        <div className="divider"></div>
 
                         {/* Seller Routes */}
 
@@ -40,11 +41,20 @@ const DashboardNav = () => {
                                 <NavLink><li>Payment History</li></NavLink>
                                 <NavLink><li>Ask For Advertisement</li></NavLink>
                             </>
+
+
+
+
+
                         }
-                        
-                        {/* User Routes */}
-                        <div className="divider"></div>
-                        <li>Payment history</li>
+                        {/* user routes */}
+                        {
+                            isUser && <>
+                                <li>Payment history</li>
+                            </>
+                        }
+
+
 
                     </ul>
 
