@@ -20,7 +20,7 @@ const DashboardNav = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 min-h-full bg-black text-base-content text-lg gap-y-6">
+                    <ul className="menu p-4 w-80 min-h-full bg-[#6861CE] text-base-content text-lg gap-y-6">
                         <img className="w-[220px]" src={logo} />
                         {/* Admin Routes */}
                         {

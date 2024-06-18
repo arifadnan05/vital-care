@@ -7,6 +7,7 @@ import Dashboard from "../Components/Dashboard/Dashboard";
 import PrivetRoute from "./PrivetRoute";
 import ManageUsers from "../Components/Dashboard/ManageUsers/ManageUsers";
 import ManageMedicine from "../Components/Dashboard/SellerDashboard/ManageMedicine/ManageMedicine";
+import Shop from "../Components/Pages/Shop/Shop";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login></Login>
+            },
+            {
+                path: '/shop',
+                element: <Shop></Shop>
             }
         ]
     },
