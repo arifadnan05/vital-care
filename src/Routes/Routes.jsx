@@ -8,6 +8,7 @@ import PrivetRoute from "./PrivetRoute";
 import ManageUsers from "../Components/Dashboard/ManageUsers/ManageUsers";
 import ManageMedicine from "../Components/Dashboard/SellerDashboard/ManageMedicine/ManageMedicine";
 import Shop from "../Components/Pages/Shop/Shop";
+import Cart from "../Components/Pages/Cart/Cart";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
             {
                 path: '/shop',
                 element: <Shop></Shop>
+            },
+            {
+                path: '/cart',
+                element: <Cart></Cart>
             }
         ]
     },

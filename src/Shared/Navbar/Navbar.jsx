@@ -23,7 +23,7 @@ const Navbar = () => {
                 </ul>
             </details>
         </li>
-        <li className='text-3xl'><a><FaCartPlus /></a></li>
+        <NavLink to="/cart"><li className='text-3xl'><a><FaCartPlus /></a></li></NavLink>
     </>
 
     return (

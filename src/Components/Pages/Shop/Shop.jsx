@@ -27,7 +27,6 @@ const Shop = () => {
         setProductDetails(res.data)
 
     }
-
     const handleCart = async (cartItem) => {
 
 
@@ -39,9 +38,18 @@ const Shop = () => {
                 unit_price: cartItem.unit_price,
                 mg: cartItem.mg,
                 seller_email: cartItem.seller_email,
-                email: user?.email
+                email: user?.email,
+                quantity: 1,
+                discount: parseFloat(cartItem.discount)
             }
-
+            // if (user?.email === cartItem.seller_email) {
+            //     return Swal.fire({
+            //         icon: "error",
+            //         title: "Uhh...",
+            //         text: "it's your product! you can't add t cart",
+            //         footer: '<a href="#">Why do I have this issue?</a>'
+            //     });
+            // }
             axiosSecure.post('/carts', cartItemInfo)
                 .then(res => {
                     console.log(res.data)
@@ -61,7 +69,7 @@ const Shop = () => {
         else {
             Swal.fire({
                 icon: "error",
-                title: "Oops...",
+                title: "Uhh...",
                 text: "Before you login!",
                 footer: '<a href="#">Why do I have this issue?</a>'
 
