@@ -5,27 +5,26 @@ import { FaMinus, FaPlus } from "react-icons/fa6"
 import { toast } from "react-toastify"
 import useAxiosSecure from "../../../Hooks/useAxiosSecure"
 import Empty from "../Empty/Empty"
+import { Link } from "react-router-dom"
 
 const Cart = () => {
     const [cart, refetch] = useCart()
     const axiosSecure = useAxiosSecure()
 
-    const totalPrice = cart.reduce((total, item) => {
-        const discountedPrice = item.unit_price * ( 1 - item.discount / 100);
-        const itemTotal = discountedPrice * item.quantity;
-        return total + itemTotal;
-    }, 0);
+    const totalPrice = cart.reduce((total, item) => total + parseInt(item.unit_price), 0)
+    // const discountedPrice = item.unit_price * ( 1 - item.discount / 100);
+    // const itemTotal = discountedPrice * item.quantity; 0);
 
     const handleRemoveItem = async (cartId) => {
         try {
-          await axiosSecure.delete(`/carts/${cartId}`);
-          refetch();
-          toast.success("Item removed successfully");
+            await axiosSecure.delete(`/carts/${cartId}`);
+            refetch();
+            toast.success("Item removed successfully");
         } catch (error) {
-          console.error("Error removing item:", error);
-          toast.error("Error removing item");
+            console.error("Error removing item:", error);
+            toast.error("Error removing item");
         }
-      }
+    }
 
 
     const handleIncreaseQuantity = async (item) => {
@@ -41,31 +40,32 @@ const Cart = () => {
     };
 
     const updateCartItem = async (item) => {
-        try {
-            const res = await axiosSecure.put(`/carts/${item._id}`, item);
-            console.log(res.data)
-            refetch();
-            toast.success("Item updated successfully");
-        } catch (error) {
-            console.error("Error updating item:", error);
-            toast.error("Error updating item");
-        }
+        console.log(item)
+        // try {
+        //     const res = await axiosSecure.put(`/carts/${item._id}`, item);
+        //     console.log(res.data)
+        //     refetch();
+        //     toast.success("Item updated successfully");
+        // } catch (error) {
+        //     console.error("Error updating item:", error);
+        //     toast.error("Error updating item");
+        // }
     };
 
     if (cart < 1) {
         return <Empty message={'Your cart is empty'} address={'/shop'} label={'Go To Shop'}></Empty>
-      }
+    }
     return (
         <Container>
-            
+
             <div>
                 <div className="flex flex-col justify-center items-end space-y-10">
                     <div className="flex space-x-16">
-                        <h2 className="text-2xl">Your Subtotal: {}</h2>
+                        <h2 className="text-2xl">Your Subtotal: { }</h2>
                         <h3 className="text-2xl">${totalPrice}</h3>
                     </div>
                     <div>
-                        <button className="btn btn-neutral">Place Order</button>
+                        <Link to='/payment'><button className="btn btn-neutral">Pay Now</button></Link>
                     </div>
                 </div>
 
@@ -104,7 +104,7 @@ const Cart = () => {
                                         <span className="mx-4">{item.quantity}</span>
                                         <span onClick={() => handleIncreaseQuantity(item)} className="btn"><FaPlus />
                                         </span></td>
-                                    <td>${(item.unit_price * (1 - item.discount / 100) * item.quantity).toFixed(2)}</td>
+                                    <td>${item.unit_price}</td>
                                     <th>
                                         <button onClick={() => handleRemoveItem(item._id)} className="btn bg-red-900 text-white"><FaRegTrashAlt /></button>
                                     </th>

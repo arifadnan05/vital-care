@@ -40,7 +40,7 @@ const DashboardNav = () => {
                             isSeller && <>
                                 <NavLink><li>Statistics</li></NavLink>
                                 <NavLink to='/dashboard/manage-medicine'><li>Manage Medicines</li></NavLink>
-                                <NavLink><li>Payment History</li></NavLink>
+                                <NavLink to="/dashboard/payment-history"><li>Payment History</li></NavLink>
                                 <NavLink><li>Ask For Advertisement</li></NavLink>
                             </>
 
