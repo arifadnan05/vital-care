@@ -13,6 +13,7 @@ import Payment from "../Components/Pages/Payment/Payment";
 import InvoicePage from "../Components/Pages/Payment/InvoicePage";
 import PaymentHistory from "../Components/Dashboard/SellerDashboard/PaymentHistory/PaymentHistory";
 import AdminPaymentManage from "../Components/Dashboard/AdminPaymentManage/AdminPaymentManage";
+import ManageCategory from "../Components/Dashboard/ManageCategory/ManageCategory";
 
 const router = createBrowserRouter([
     {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
             {
                 path: 'manage-payment',
                 element: <AdminPaymentManage></AdminPaymentManage>
+            },
+            {
+                path: 'manage-category',
+                element: <ManageCategory></ManageCategory>
             }
         ]
     }
