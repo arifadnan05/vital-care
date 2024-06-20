@@ -12,6 +12,7 @@ import Cart from "../Components/Pages/Cart/Cart";
 import Payment from "../Components/Pages/Payment/Payment";
 import InvoicePage from "../Components/Pages/Payment/InvoicePage";
 import PaymentHistory from "../Components/Dashboard/SellerDashboard/PaymentHistory/PaymentHistory";
+import AdminPaymentManage from "../Components/Dashboard/AdminPaymentManage/AdminPaymentManage";
 
 const router = createBrowserRouter([
     {
@@ -62,7 +63,12 @@ const router = createBrowserRouter([
             },
             {
                 path: 'payment-history',
-                element: <PaymentHistory></PaymentHistory>
+                element: <PaymentHistory></PaymentHistory>,
+                
+            },
+            {
+                path: 'manage-payment',
+                element: <AdminPaymentManage></AdminPaymentManage>
             }
         ]
     }
