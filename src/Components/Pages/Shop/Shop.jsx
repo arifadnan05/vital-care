@@ -42,14 +42,14 @@ const Shop = () => {
                 quantity: 1,
                 discount: parseFloat(cartItem.discount)
             }
-            // if (user?.email === cartItem.seller_email) {
-            //     return Swal.fire({
-            //         icon: "error",
-            //         title: "Uhh...",
-            //         text: "it's your product! you can't add t cart",
-            //         footer: '<a href="#">Why do I have this issue?</a>'
-            //     });
-            // }
+            if (user?.email === cartItem.seller_email) {
+                return Swal.fire({
+                    icon: "error",
+                    title: "Uhh...",
+                    text: "it's your product! you can't add t cart",
+                    footer: '<a href="#">Why do I have this issue?</a>'
+                });
+            }
             axiosSecure.post('/carts', cartItemInfo)
                 .then(res => {
                     console.log(res.data)

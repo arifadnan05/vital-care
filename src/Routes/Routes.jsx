@@ -14,6 +14,7 @@ import InvoicePage from "../Components/Pages/Payment/InvoicePage";
 import PaymentHistory from "../Components/Dashboard/SellerDashboard/PaymentHistory/PaymentHistory";
 import AdminPaymentManage from "../Components/Dashboard/AdminPaymentManage/AdminPaymentManage";
 import ManageCategory from "../Components/Dashboard/ManageCategory/ManageCategory";
+import HomeCategoryDetails from "../Components/Pages/HomeCategory/HomeCategoryDetails/HomeCategoryDetails";
 
 const router = createBrowserRouter([
     {
@@ -47,6 +48,11 @@ const router = createBrowserRouter([
             {
                 path: '/payment/invoice',
                 element: <InvoicePage></InvoicePage>
+            },
+            {
+                path: '/category/:category',
+                element: <HomeCategoryDetails></HomeCategoryDetails>,
+                loader: ({params}) => fetch(`http://localhost:4000/category/${params.category}`)
             }
         ]
     },
