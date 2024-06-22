@@ -29,7 +29,7 @@ const DashboardNav = () => {
                                 <NavLink to="/dashboard/manage-users"><li>Manage Users</li></NavLink>
                                 <NavLink to="/dashboard/manage-category"><li>Manage Category</li></NavLink>
                                 <NavLink to="/dashboard/manage-payment"><li>Payment Management</li></NavLink>
-                                <NavLink><li>Sales Report</li></NavLink>
+                                <NavLink to="/dashboard/sales-report"><li>Sales Report</li></NavLink>
                                 <NavLink to='/dashboard/manage-advertisement'><li>Manage banner Advertise</li></NavLink>
                             </>
                         }

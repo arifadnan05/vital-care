@@ -19,6 +19,7 @@ import ReqAdvertisement from "../Components/Dashboard/SellerDashboard/ReqAdverti
 import AdminBannerManage from "../Components/Dashboard/AdminBannerMange/AdminBannerManage";
 import TotalRevenue from "../Components/Dashboard/SellerDashboard/TotalRevenue/TotalRevenue";
 import AdminTotalRevenue from "../Components/Dashboard/AdminTotalRevenue/AdminTotalRevenue";
+import SalesReport from "../Components/Dashboard/SellerDashboard/SalesReport/SalesReport";
 
 const router = createBrowserRouter([
     {
@@ -69,9 +70,13 @@ const router = createBrowserRouter([
                 element: <AdminTotalRevenue></AdminTotalRevenue>
             },
             {
+                path: 'sales-report',
+                element: <SalesReport></SalesReport>
+            },
+            {
                 path: 'statistics',
                 element: <TotalRevenue></TotalRevenue>
-                
+
             },
             {
                 path: 'manage-users',

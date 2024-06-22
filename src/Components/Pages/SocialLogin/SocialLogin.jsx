@@ -13,7 +13,8 @@ const SocialLogin = () => {
             const result = await googleSingIn()
             const userInfo = {
                 email: result.user?.email,
-                name: result.user?.displayName
+                name: result.user?.displayName,
+                role: 'user'
             }
             axiosPublic.post('/users', userInfo)
             navigate(location?.state ? location.state : '/')

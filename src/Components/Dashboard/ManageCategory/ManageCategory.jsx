@@ -29,6 +29,7 @@ const ManageCategory = () => {
             }
             const res = await axiosSecure.post('/manage-category', categoryInfo)
             if (res.data.insertedId) {
+                refetch()
                 reset()
                 Swal.fire({
                     position: "top-end",
@@ -46,14 +47,37 @@ const ManageCategory = () => {
         }
     }
 
-    const { data: allCategory = [] } = useQuery({
+    const { data: allCategory = [], refetch } = useQuery({
         queryKey: ['allCategory'],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/medicine`)
+            const res = await axiosSecure.get(`/category`)
             return res.data
         }
     })
-   
+
+    const handleDeleteCategory = async id => {
+        try {
+            await axiosSecure.delete(`/category/${id}`)
+            refetch()
+            Swal.fire({
+                title: "Good job!",
+                text: ` This item deleted success `,
+                icon: "success"
+            });
+
+        }
+        catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Uhh...",
+                text: "You have some problem!",
+                footer: '<a href="#">Why do I have this issue?</a>'
+
+            });
+        }
+    }
+
+
     return (
         <div>
             <div className="flex justify-center mt-4">
@@ -105,9 +129,7 @@ const ManageCategory = () => {
                     {/* head */}
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Mg</th>
+                            <th>Category Name</th>
                             <th>Update</th>
                             <th>Delete</th>
                         </tr>
@@ -120,25 +142,20 @@ const ManageCategory = () => {
                                     <div className="flex items-center gap-3">
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-12 h-12">
-                                                <img src={item.item_image} alt="Avatar Tailwind CSS Component" />
+                                                <img src={item.image} alt="Avatar Tailwind CSS Component" />
                                             </div>
                                         </div>
                                         <div>
-                                            <div className="font-bold">{item.item_name}</div>
+                                            <div className="font-bold">{item.categoryName}</div>
 
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    {item.category}
-
-                                </td>
-                                <td>{item.mg}mg</td>
-                                <td>
                                     <button className="btn btn-ghost text-2xl"><FaEdit /></button>
                                 </td>
                                 <th>
-                                    <button className="btn btn-ghost text-2xl bg-red-900 text-white"><FaRegTrashAlt /></button>
+                                    <button onClick={() => handleDeleteCategory(item._id)} className="btn btn-ghost text-2xl bg-red-900 text-white"><FaRegTrashAlt /></button>
                                 </th>
                             </tr>)
                         }

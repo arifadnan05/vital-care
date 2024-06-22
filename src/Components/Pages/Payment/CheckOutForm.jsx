@@ -116,7 +116,8 @@ const CheckOutForm = () => {
                     cartId: cart.map(item => item._id),
                     itemId: cart.map(item => item.cartId),
                     seller_email: cart.map(item => item.seller_email),
-                    status: 'pending'
+                    status: 'pending',
+                    medicine_name: cart.map(item => item.item_name)
                 }
 
 
