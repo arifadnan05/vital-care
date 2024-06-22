@@ -6,6 +6,7 @@ import { useState } from "react"
 import useAxiosSecure from "../../../Hooks/useAxiosSecure"
 import useAuth from "../../../Hooks/useAuth"
 import Swal from "sweetalert2"
+import { Helmet } from "react-helmet-async"
 
 const Shop = () => {
     const [productDetails, setProductDetails] = useState({})
@@ -80,6 +81,9 @@ const Shop = () => {
 
     return (
         <Container>
+            <Helmet>
+                <title>SHOP</title>
+            </Helmet>
             <div>
                 <div className="overflow-x-auto">
                     <table className="table">

@@ -6,6 +6,7 @@ import { toast } from "react-toastify"
 import useAxiosSecure from "../../../Hooks/useAxiosSecure"
 import Empty from "../Empty/Empty"
 import { Link } from "react-router-dom"
+import { Helmet } from "react-helmet-async"
 
 const Cart = () => {
     const [cart, refetch] = useCart()
@@ -59,6 +60,9 @@ const Cart = () => {
         <Container>
 
             <div>
+                <Helmet>
+                    <title>Cart</title>
+                </Helmet>
                 <div className="flex flex-col justify-center items-end space-y-10">
                     <div className="flex space-x-16">
                         <h2 className="text-2xl">Your Subtotal: { }</h2>

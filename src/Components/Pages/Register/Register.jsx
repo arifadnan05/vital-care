@@ -7,6 +7,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import SocialLogin from '../SocialLogin/SocialLogin'
 import useAxiosSecure from '../../../Hooks/useAxiosSecure'
+import { Helmet } from 'react-helmet-async'
 
 const Register = () => {
     const navigate = useNavigate();
@@ -49,6 +50,9 @@ const Register = () => {
     }
     return (
         <div className='bg-image'>
+            <Helmet>
+                <title>Vital Care | Register</title>
+            </Helmet>
             <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-5xl">
                 <div className="hidden bg-cover lg:block lg:w-1/2 bg-[url('https://img.freepik.com/premium-vector/nice-good-looking-young-doctor-standing-show-thumb-up_97632-3425.jpg')]"></div>
 

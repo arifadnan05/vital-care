@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async'
 import HomeCategory from '../HomeCategory/HomeCategory'
 import Banner from './Banner/Banner'
 import Discount from './Dicount/Discount'
@@ -7,6 +8,9 @@ import NewsLetter from './NewsLetter/NewsLetter'
 const Home = () => {
   return (
     <div>
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
       <Banner></Banner>
       <div>
         <div>

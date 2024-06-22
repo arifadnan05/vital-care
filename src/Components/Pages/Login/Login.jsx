@@ -5,6 +5,7 @@ import SocialLogin from '../SocialLogin/SocialLogin'
 import useAuth from '../../../Hooks/useAuth'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
+import { Helmet } from 'react-helmet-async'
 const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
@@ -28,6 +29,11 @@ const Login = () => {
     }
     return (
         <div className='bg-image flex items-center'>
+            <div>
+                <Helmet>
+                    <title>Vital Care || Login</title>
+                </Helmet>
+            </div>
             <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl">
                 <div className="hidden bg-cover lg:block lg:w-1/2 bg-[url('https://img.freepik.com/premium-vector/nice-good-looking-young-doctor-standing-show-thumb-up_97632-3425.jpg')]"></div>
 
