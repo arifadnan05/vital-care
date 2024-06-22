@@ -6,10 +6,10 @@ const Dashboard = () => {
     return (
         <Container>
             <div className="flex">
-                <div className="w-64">
+                <div className="lg:w-64">
                     <DashboardNav></DashboardNav>
                 </div>
-                <div className="flex-1 ml-28">
+                <div className="flex-1 md:ml-28">
                    
                     <Outlet></Outlet>
                 </div>

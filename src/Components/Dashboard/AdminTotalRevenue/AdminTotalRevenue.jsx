@@ -21,8 +21,8 @@ const AdminTotalRevenue = () => {
     }, 0);
 
     return (
-        <div className="mt-10">
-            <div className="flex justify-around">
+        <div className="mt-16">
+            <div className="space-y-7 md:space-y-0 md:flex md:justify-around">
 
 
                 <div className="w-[300px] h-[150px] bg-gray-300 rounded-lg flex justify-around items-center">

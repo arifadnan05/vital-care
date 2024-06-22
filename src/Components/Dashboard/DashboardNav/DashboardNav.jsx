@@ -11,7 +11,7 @@ const DashboardNav = () => {
     const [isUser] = useUser()
     return (
         <div>
-            <div className="drawer lg:drawer-open">
+            <div className="drawer lg:drawer-open z-50">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col items-end justify-center">
                     {/* Page content here */}

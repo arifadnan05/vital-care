@@ -1,9 +1,9 @@
-
+import logo from '../../../public/logo.png'
 const Footer = () => {
     return (
         <footer className="footer p-10 bg-neutral text-neutral-content">
             <aside>
-                
+                <img className='w-[200px]' src={logo} alt="" />
                 <p>Vital Care Ltd.<br />Providing reliable Medicine since 1992</p>
             </aside>
             <nav>

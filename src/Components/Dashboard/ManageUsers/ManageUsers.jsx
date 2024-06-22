@@ -83,7 +83,7 @@ const ManageUsers = () => {
                                 </td>
                                 <td>{user.role}</td>
                                 <th>
-                                   
+
 
                                     <div className="dropdown">
                                         <div tabIndex={0} role="button" className="btn m-1">Change User Role</div>
