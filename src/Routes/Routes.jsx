@@ -21,6 +21,7 @@ import TotalRevenue from "../Components/Dashboard/SellerDashboard/TotalRevenue/T
 import AdminTotalRevenue from "../Components/Dashboard/AdminTotalRevenue/AdminTotalRevenue";
 import SalesReport from "../Components/Dashboard/SellerDashboard/SalesReport/SalesReport";
 import UserPaymentHistory from "../Components/Dashboard/UserPaymentHistory/UserPaymentHistory";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
     {
@@ -58,7 +59,7 @@ const router = createBrowserRouter([
             {
                 path: '/category/:category',
                 element: <HomeCategoryDetails></HomeCategoryDetails>,
-                loader: ({ params }) => fetch(`http://localhost:4000/category/${params.category}`)
+                loader: ({ params }) => fetch(`https://vital-care-nu.vercel.app/category/${params.category}`)
             }
         ]
     },
@@ -68,11 +69,11 @@ const router = createBrowserRouter([
         children: [
             {
                 path: 'admin-statistics',
-                element: <AdminTotalRevenue></AdminTotalRevenue>
+                element: <AdminRoute><AdminTotalRevenue></AdminTotalRevenue></AdminRoute>
             },
             {
                 path: 'sales-report',
-                element: <SalesReport></SalesReport>
+                element: <AdminRoute><SalesReport></SalesReport></AdminRoute>
             },
             {
                 path: 'statistics',
@@ -81,7 +82,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'manage-users',
-                element: <ManageUsers></ManageUsers>
+                element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
             },
             {
                 path: 'manage-medicine',
@@ -89,16 +90,16 @@ const router = createBrowserRouter([
             },
             {
                 path: 'payment-history',
-                element: <PaymentHistory></PaymentHistory>,
+                element: <PaymentHistory></PaymentHistory>
 
             },
             {
                 path: 'manage-payment',
-                element: <AdminPaymentManage></AdminPaymentManage>
+                element: <AdminRoute><AdminPaymentManage></AdminPaymentManage></AdminRoute>
             },
             {
                 path: 'manage-category',
-                element: <ManageCategory></ManageCategory>
+                element: <AdminRoute><ManageCategory></ManageCategory></AdminRoute>
             },
             {
                 path: 'request-advertisement',
@@ -106,7 +107,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'manage-advertisement',
-                element: <AdminBannerManage></AdminBannerManage>
+                element: <AdminRoute><AdminBannerManage></AdminBannerManage></AdminRoute>
             },
             {
                 path: 'user-payment-history',
