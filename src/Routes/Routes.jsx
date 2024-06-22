@@ -23,11 +23,13 @@ import SalesReport from "../Components/Dashboard/SellerDashboard/SalesReport/Sal
 import UserPaymentHistory from "../Components/Dashboard/UserPaymentHistory/UserPaymentHistory";
 import AdminRoute from "./AdminRoute";
 import SellerRoute from "./SellerRoute";
+import ErrorPage from "../Components/Pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Root></Root>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -67,6 +69,7 @@ const router = createBrowserRouter([
     {
         path: 'dashboard',
         element: <PrivetRoute><Dashboard></Dashboard></PrivetRoute>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: 'admin-statistics',
