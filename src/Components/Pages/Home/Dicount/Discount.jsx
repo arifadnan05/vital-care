@@ -10,8 +10,23 @@ import './styles.css';
 // import required modules
 import { Pagination } from 'swiper/modules';
 import Container from '../../../../Shared/Container/Container';
+import { useQuery } from '@tanstack/react-query';
+import useAxiosPublic from '../../../../Hooks/useAxiosPublic';
+
+
+
 
 const Discount = () => {
+    const axiosPublic = useAxiosPublic()
+
+    const { data: discountMedicine = [] } = useQuery({
+        queryKey: ['discountMedicine'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('medicine')
+            return res.data
+        }
+    })
+
     return (
         <Container>
             <>
@@ -24,24 +39,18 @@ const Discount = () => {
                     modules={[Pagination]}
                     className="mySwiper"
                 >
-                    <SwiperSlide>
-                        <img src="https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src="https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src="https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src="https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src="https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630" />
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <img src="https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630" />
-                    </SwiperSlide>
+                    {
+                        discountMedicine.map(item => item.discount > 0 && <div key={item._id}>
+                            <SwiperSlide>
+                                <h1 className='absolute bg-neutral text-white py-2 px-4 rounded-lg mt-4 ml-[230px]'>{item.discount}% Discount</h1>
+                                <div>
+                                    <img src={item.item_image} />
+                                </div>
+                            </SwiperSlide>
+
+                        </div>)
+                    }
+
 
                 </Swiper>
             </>

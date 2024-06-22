@@ -15,6 +15,8 @@ import PaymentHistory from "../Components/Dashboard/SellerDashboard/PaymentHisto
 import AdminPaymentManage from "../Components/Dashboard/AdminPaymentManage/AdminPaymentManage";
 import ManageCategory from "../Components/Dashboard/ManageCategory/ManageCategory";
 import HomeCategoryDetails from "../Components/Pages/HomeCategory/HomeCategoryDetails/HomeCategoryDetails";
+import ReqAdvertisement from "../Components/Dashboard/SellerDashboard/ReqAdvertisement/ReqAdvertisement";
+import AdminBannerManage from "../Components/Dashboard/AdminBannerMange/AdminBannerManage";
 
 const router = createBrowserRouter([
     {
@@ -80,6 +82,14 @@ const router = createBrowserRouter([
             {
                 path: 'manage-category',
                 element: <ManageCategory></ManageCategory>
+            },
+            {
+                path: 'request-advertisement',
+                element: <ReqAdvertisement></ReqAdvertisement>
+            },
+            {
+                path: 'manage-advertisement',
+                element: <AdminBannerManage></AdminBannerManage>
             }
         ]
     }

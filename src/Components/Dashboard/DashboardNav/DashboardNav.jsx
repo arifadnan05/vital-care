@@ -30,7 +30,7 @@ const DashboardNav = () => {
                                 <NavLink to="/dashboard/manage-category"><li>Manage Category</li></NavLink>
                                 <NavLink to="/dashboard/manage-payment"><li>Payment Management</li></NavLink>
                                 <NavLink><li>Sales Report</li></NavLink>
-                                <NavLink><li>Manage banner Advertise</li></NavLink>
+                                <NavLink to='/dashboard/manage-advertisement'><li>Manage banner Advertise</li></NavLink>
                             </>
                         }
 
@@ -41,7 +41,7 @@ const DashboardNav = () => {
                                 <NavLink><li>Statistics</li></NavLink>
                                 <NavLink to='/dashboard/manage-medicine'><li>Manage Medicines</li></NavLink>
                                 <NavLink to="/dashboard/payment-history"><li>Payment History</li></NavLink>
-                                <NavLink><li>Ask For Advertisement</li></NavLink>
+                                <NavLink to='/dashboard/request-advertisement'><li>Ask For Advertisement</li></NavLink>
                             </>
 
 
