@@ -17,6 +17,8 @@ import ManageCategory from "../Components/Dashboard/ManageCategory/ManageCategor
 import HomeCategoryDetails from "../Components/Pages/HomeCategory/HomeCategoryDetails/HomeCategoryDetails";
 import ReqAdvertisement from "../Components/Dashboard/SellerDashboard/ReqAdvertisement/ReqAdvertisement";
 import AdminBannerManage from "../Components/Dashboard/AdminBannerMange/AdminBannerManage";
+import TotalRevenue from "../Components/Dashboard/SellerDashboard/TotalRevenue/TotalRevenue";
+import AdminTotalRevenue from "../Components/Dashboard/AdminTotalRevenue/AdminTotalRevenue";
 
 const router = createBrowserRouter([
     {
@@ -54,7 +56,7 @@ const router = createBrowserRouter([
             {
                 path: '/category/:category',
                 element: <HomeCategoryDetails></HomeCategoryDetails>,
-                loader: ({params}) => fetch(`http://localhost:4000/category/${params.category}`)
+                loader: ({ params }) => fetch(`http://localhost:4000/category/${params.category}`)
             }
         ]
     },
@@ -62,6 +64,15 @@ const router = createBrowserRouter([
         path: 'dashboard',
         element: <PrivetRoute><Dashboard></Dashboard></PrivetRoute>,
         children: [
+            {
+                path: 'admin-statistics',
+                element: <AdminTotalRevenue></AdminTotalRevenue>
+            },
+            {
+                path: 'statistics',
+                element: <TotalRevenue></TotalRevenue>
+                
+            },
             {
                 path: 'manage-users',
                 element: <ManageUsers></ManageUsers>
@@ -73,7 +84,7 @@ const router = createBrowserRouter([
             {
                 path: 'payment-history',
                 element: <PaymentHistory></PaymentHistory>,
-                
+
             },
             {
                 path: 'manage-payment',

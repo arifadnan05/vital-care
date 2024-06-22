@@ -25,7 +25,7 @@ const DashboardNav = () => {
                         {/* Admin Routes */}
                         {
                             isAdmin && <>
-                                <NavLink to="/dashboard/com"><li>Statistics</li></NavLink>
+                                <NavLink to="/dashboard/admin-statistics"><li>Statistics</li></NavLink>
                                 <NavLink to="/dashboard/manage-users"><li>Manage Users</li></NavLink>
                                 <NavLink to="/dashboard/manage-category"><li>Manage Category</li></NavLink>
                                 <NavLink to="/dashboard/manage-payment"><li>Payment Management</li></NavLink>

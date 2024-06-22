@@ -10,6 +10,7 @@ const Dashboard = () => {
                     <DashboardNav></DashboardNav>
                 </div>
                 <div className="flex-1 ml-28">
+                   
                     <Outlet></Outlet>
                 </div>
 
