@@ -52,7 +52,7 @@ const DashboardNav = () => {
                         {/* user routes */}
                         {
                             isUser && <>
-                                <li>Payment history</li>
+                                <NavLink to='/dashboard/user-payment-history'><li>Payment history</li></NavLink>
                             </>
                         }
 

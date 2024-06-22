@@ -20,6 +20,7 @@ import AdminBannerManage from "../Components/Dashboard/AdminBannerMange/AdminBan
 import TotalRevenue from "../Components/Dashboard/SellerDashboard/TotalRevenue/TotalRevenue";
 import AdminTotalRevenue from "../Components/Dashboard/AdminTotalRevenue/AdminTotalRevenue";
 import SalesReport from "../Components/Dashboard/SellerDashboard/SalesReport/SalesReport";
+import UserPaymentHistory from "../Components/Dashboard/UserPaymentHistory/UserPaymentHistory";
 
 const router = createBrowserRouter([
     {
@@ -106,6 +107,10 @@ const router = createBrowserRouter([
             {
                 path: 'manage-advertisement',
                 element: <AdminBannerManage></AdminBannerManage>
+            },
+            {
+                path: 'user-payment-history',
+                element: <UserPaymentHistory></UserPaymentHistory>
             }
         ]
     }
