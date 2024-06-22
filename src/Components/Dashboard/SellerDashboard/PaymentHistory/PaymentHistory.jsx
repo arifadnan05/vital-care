@@ -30,9 +30,11 @@ const PaymentHistory = () => {
                     <tbody>
 
                         {
-                            userPayments.map(item => <tr key={item._id}>
+                            userPayments.map(item => <tr className={`${item.status === 'paid' ? 'bg-green-400' : 'bg-red-400'}`} key={item._id}>
                                 <td className="border-b border-gray-200 p-2">{item.transactionId}</td>
-                                <td className="border-b border-gray-200 p-2">{item.status === 'paid' ? 'Paid' : 'Pending'}</td>
+                                <td className="border-b border-gray-200 p-2">
+                                    {item.status === 'paid' ? 'Paid' : 'Pending'}
+                                </td>
                                 <td className="border-b border-gray-200 p-2 text-right">${item.price}</td>
                             </tr>)
                         }

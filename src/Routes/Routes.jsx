@@ -22,6 +22,7 @@ import AdminTotalRevenue from "../Components/Dashboard/AdminTotalRevenue/AdminTo
 import SalesReport from "../Components/Dashboard/SellerDashboard/SalesReport/SalesReport";
 import UserPaymentHistory from "../Components/Dashboard/UserPaymentHistory/UserPaymentHistory";
 import AdminRoute from "./AdminRoute";
+import SellerRoute from "./SellerRoute";
 
 const router = createBrowserRouter([
     {
@@ -77,7 +78,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'statistics',
-                element: <TotalRevenue></TotalRevenue>
+                element: <SellerRoute><TotalRevenue></TotalRevenue></SellerRoute>
 
             },
             {
@@ -90,7 +91,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'payment-history',
-                element: <PaymentHistory></PaymentHistory>
+                element: <SellerRoute><PaymentHistory></PaymentHistory></SellerRoute>
 
             },
             {
@@ -103,7 +104,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'request-advertisement',
-                element: <ReqAdvertisement></ReqAdvertisement>
+                element: <SellerRoute><ReqAdvertisement></ReqAdvertisement></SellerRoute>
             },
             {
                 path: 'manage-advertisement',

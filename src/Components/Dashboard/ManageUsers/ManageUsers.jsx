@@ -47,6 +47,30 @@ const ManageUsers = () => {
 
     }
 
+    const handleRemoveUser = async id => {
+        try {
+            const res = await axiosSecure.delete(`/users/${id}`)
+            if (res.data.deletedCount > 1) {
+                refetch()
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `User remove success`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        }
+        catch (error) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: '<a href="#">Why do I have this issue?</a>'
+            });
+        }
+    }
+
     return (
         <div>
             <div>
@@ -95,7 +119,7 @@ const ManageUsers = () => {
 
                                 </th>
                                 <th>
-                                    <button className="btn btn-ghost text-2xl text-red-500"><FaTrash /></button>
+                                    <button onClick={() => handleRemoveUser(user._id)} className="btn btn-ghost text-2xl text-red-500"><FaTrash /></button>
                                 </th>
                             </tr>)
                         }
