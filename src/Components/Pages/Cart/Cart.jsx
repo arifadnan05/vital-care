@@ -12,14 +12,17 @@ const Cart = () => {
     const [cart, refetch] = useCart()
     const axiosSecure = useAxiosSecure()
 
-    const totalPrice = cart.reduce((total, item) => total + parseInt(item.unit_price), 0)
+    const totalPrice = cart.reduce((total, item) => {
+        const discountedPrice = parseFloat(item.unit_price) * (1 - item.discount / 100);
+        const itemTotal = discountedPrice * item.quantity;
+        return total + itemTotal;
+    }, 0);
     // const discountedPrice = item.unit_price * ( 1 - item.discount / 100);
     // const itemTotal = discountedPrice * item.quantity; 0);
-
     const handleRemoveItem = async (cartId) => {
         try {
             await axiosSecure.delete(`/carts/${cartId}`);
-            refetch();
+            await refetch(); // Assuming refetch is an async function that fetches updated cart data
             toast.success("Item removed successfully");
         } catch (error) {
             console.error("Error removing item:", error);
@@ -29,29 +32,45 @@ const Cart = () => {
 
 
     const handleIncreaseQuantity = async (item) => {
-        const updatedItem = { ...item, quantity: item.quantity + 1 };
-        updateCartItem(updatedItem);
+        try {
+            const updatedItem = { ...item, quantity: item.quantity + 1 };
+            await updateCartItem(item._id, 'increment');
+        } catch (error) {
+            console.error("Error increasing item quantity:", error);
+            toast.error("Error increasing item quantity");
+        }
     }
 
     const handleDecreaseQuantity = async (item) => {
-        if (item.quantity > 1) {
-            const updatedItem = { ...item, quantity: item.quantity - 1 };
-            await updateCartItem(updatedItem);
+        try {
+            if (item.quantity > 1) {
+                await updateCartItem(item._id, 'decrement');
+            } else {
+                console.warn("Quantity cannot be less than 1");
+            }
+        } catch (error) {
+            console.error("Error decreasing item quantity:", error);
+            toast.error("Error decreasing item quantity");
         }
-    };
+    }
 
-    const updateCartItem = async (item) => {
-        console.log(item)
-        // try {
-        //     const res = await axiosSecure.put(`/carts/${item._id}`, item);
-        //     console.log(res.data)
-        //     refetch();
-        //     toast.success("Item updated successfully");
-        // } catch (error) {
-        //     console.error("Error updating item:", error);
-        //     toast.error("Error updating item");
-        // }
-    };
+
+    const updateCartItem = async (itemId, action) => {
+        try {
+            const res = await axiosSecure.put(`/carts/${itemId}`, { action });
+            if (res.status === 200) {
+                await refetch(); // Assuming refetch is an async function that fetches updated cart data
+                toast.success("Item updated successfully");
+            } else {
+                console.error("Failed to update item:", res.statusText);
+                toast.error("Failed to update item");
+            }
+        } catch (error) {
+            console.error("Error updating item:", error);
+            toast.error("Error updating item");
+        }
+    }
+
 
     if (cart < 1) {
         return <Empty message={'Your cart is empty'} address={'/shop'} label={'Go To Shop'}></Empty>
@@ -108,7 +127,7 @@ const Cart = () => {
                                         <span className="mx-4">{item.quantity}</span>
                                         <span onClick={() => handleIncreaseQuantity(item)} className="btn"><FaPlus />
                                         </span></td>
-                                    <td>${item.unit_price}</td>
+                                    <td>${(parseFloat(item.unit_price) * (1 - item.discount / 100) * item.quantity).toFixed(2)}</td>
                                     <th>
                                         <button onClick={() => handleRemoveItem(item._id)} className="btn bg-red-900 text-white"><FaRegTrashAlt /></button>
                                     </th>

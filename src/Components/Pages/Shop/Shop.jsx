@@ -36,7 +36,7 @@ const Shop = () => {
                 cartId: cartItem._id,
                 item_name: cartItem.item_name,
                 item_image: cartItem.item_image,
-                unit_price: cartItem.unit_price,
+                unit_price: parseFloat(cartItem.unit_price),
                 mg: cartItem.mg,
                 seller_email: cartItem.seller_email,
                 email: user?.email,
