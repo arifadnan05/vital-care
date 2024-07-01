@@ -68,7 +68,15 @@ You can see my server-side code [here](https://github.com/arifadnan05/vital-care
 - React Helmet async
 
 ### Installation
-#### If you run your local computer Follow this process.
-- clone this repository
-- npm install
-- npm run dev
+##### If you run your local computer Follow this process.
+1. Clone the repo
+   ```sh
+   git clone https://github.com/arifadnan05/impact-connect.git
+2. Install all dependency
+   ```sh
+   npm install
+4. Live Preview
+   ```sh
+     npm run dev
+
+##### For any query feel free to ask me any time
