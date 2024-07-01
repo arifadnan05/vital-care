@@ -71,12 +71,12 @@ You can see my server-side code [here](https://github.com/arifadnan05/vital-care
 ##### If you run your local computer Follow this process.
 1. Clone the repo
    ```sh
-   git clone https://github.com/arifadnan05/vital-care.git
+      https://github.com/arifadnan05/vital-care.git
 2. Install all dependency
    ```sh
-   npm install
+      npm install
 4. Live Preview
    ```sh
-     npm run dev
+      npm run dev
 
 ##### For any query feel free to ask me any time
