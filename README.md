@@ -68,3 +68,7 @@ You can see my server-side code [here](https://github.com/arifadnan05/vital-care
 - React Helmet async
 
 ### Installation
+#### If you run your local computer Follow this process.
+- clone this repository
+- npm install
+- npm run dev
