@@ -71,7 +71,7 @@ You can see my server-side code [here](https://github.com/arifadnan05/vital-care
 ##### If you run your local computer Follow this process.
 1. Clone the repo
    ```sh
-   git clone https://github.com/arifadnan05/impact-connect.git
+   git clone https://github.com/arifadnan05/vital-care.git
 2. Install all dependency
    ```sh
    npm install
