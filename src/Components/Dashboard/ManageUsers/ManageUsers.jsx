@@ -2,10 +2,11 @@ import { useQuery } from "@tanstack/react-query"
 import useAxiosSecure from "../../../Hooks/useAxiosSecure"
 import { FaTrash } from "react-icons/fa6"
 import Swal from "sweetalert2"
+import LoadingSpinner from "../../../Shared/loading/LoadingSpinner"
 
 const ManageUsers = () => {
     const axiosSecure = useAxiosSecure()
-    const { data: users = [], refetch } = useQuery({
+    const { data: users = [], refetch, isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await axiosSecure.get('/users')
@@ -49,8 +50,8 @@ const ManageUsers = () => {
 
     const handleRemoveUser = async id => {
         try {
-            const res = await axiosSecure.delete(`/users/${id}`)
-            if (res.data.deletedCount > 1) {
+            await axiosSecure.delete(`/users/${id}`)
+            
                 refetch()
                 Swal.fire({
                     position: "top-end",
@@ -59,7 +60,7 @@ const ManageUsers = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-            }
+            
         }
         catch (error) {
             Swal.fire({
@@ -70,7 +71,7 @@ const ManageUsers = () => {
             });
         }
     }
-
+    if (isLoading) return <LoadingSpinner />
     return (
         <div>
             <div>

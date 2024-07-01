@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import { toast } from "react-toastify";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const SocialLogin = () => {
     const { googleSingIn } = useAuth();
@@ -20,7 +21,12 @@ const SocialLogin = () => {
             navigate(location?.state ? location.state : '/')
             toast.success('Login Successful')
         } catch (err) {
-            console.log(err)
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: '<a href="#">Why do I have this issue?</a>'
+              });
         }
     }
     return (

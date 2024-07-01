@@ -2,11 +2,12 @@ import { useQuery } from "@tanstack/react-query"
 import useAxiosSecure from "../../../Hooks/useAxiosSecure"
 import Swal from "sweetalert2"
 import { FaCheck } from "react-icons/fa6"
+import LoadingSpinner from "../../../Shared/loading/LoadingSpinner"
 
 const AdminPaymentManage = () => {
 
     const axiosSecure = useAxiosSecure()
-    const { data: pendingStatus = [], refetch } = useQuery({
+    const { data: pendingStatus = [], refetch, isLoading } = useQuery({
         queryKey: ['pendingStatus'],
         queryFn: async () => {
             const res = await axiosSecure.get('/payments')
@@ -27,10 +28,11 @@ const AdminPaymentManage = () => {
                         timer: 1500
                     });
                 }
-                console.log(res.data)
+                // console.log(res.data)
             })
 
     }
+    if(isLoading) return <LoadingSpinner />
     return (
         <div>
             <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center">

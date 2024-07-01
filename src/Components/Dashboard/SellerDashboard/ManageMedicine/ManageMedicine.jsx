@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom"
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure"
 import useAxiosPublic from "../../../../Hooks/useAxiosPublic"
 import { useQuery } from "@tanstack/react-query"
+import LoadingSpinner from "../../../../Shared/loading/LoadingSpinner"
 
 const ManageMedicine = () => {
     const { user } = useAuth()
@@ -57,10 +58,15 @@ const ManageMedicine = () => {
         }
         catch (error) {
 
-            console.log(error.message)
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: '<a href="#">Why do I have this issue?</a>'
+              });
         }
     }
-    const { data: medicine = [] } = useQuery({
+    const { data: medicine = [], isLoading } = useQuery({
         queryKey: ['medicine'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/medicine/${user?.email}`)
@@ -70,13 +76,13 @@ const ManageMedicine = () => {
 
 
 
-
+    if (isLoading) return <LoadingSpinner />
     return (
         <div>
             <div className="flex justify-center mt-4">
                 <h2 className="text-3xl">ADD MEDICINE TO THE WEBSITE</h2>
             </div>
-            
+
             <div className="flex justify-center my-8">
                 <button className="btn btn-active btn-neutral" onClick={() => document.getElementById('my_modal_4').showModal()}>Add Medicine</button>
             </div>
@@ -123,7 +129,7 @@ const ManageMedicine = () => {
                     </table>
                 </div>
             </div>
-
+            
             <dialog id="my_modal_4" className="modal">
                 <div className="modal-box w-11/12 max-w-5xl">
                     {/* Modal content hare */}

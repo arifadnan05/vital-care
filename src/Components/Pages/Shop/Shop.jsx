@@ -7,6 +7,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure"
 import useAuth from "../../../Hooks/useAuth"
 import Swal from "sweetalert2"
 import { Helmet } from "react-helmet-async"
+import LoadingSpinner from "../../../Shared/loading/LoadingSpinner"
 
 const Shop = () => {
     const [productDetails, setProductDetails] = useState({})
@@ -14,7 +15,7 @@ const Shop = () => {
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth()
 
-    const { data: medicineItem = [] } = useQuery({
+    const { data: medicineItem = [], isLoading } = useQuery({
         queryKey: ['medicineItem'],
         queryFn: async () => {
             const res = await axiosPublic.get('/medicine')
@@ -53,7 +54,7 @@ const Shop = () => {
             }
             axiosSecure.post('/carts', cartItemInfo)
                 .then(res => {
-                    console.log(res.data)
+                    // console.log(res.data)
                     if (res.data.insertedId) {
                         Swal.fire({
                             position: "top-end",
@@ -78,7 +79,7 @@ const Shop = () => {
         }
 
     }
-
+    if(isLoading) return <LoadingSpinner></LoadingSpinner>
     return (
         <Container>
             <Helmet>

@@ -74,7 +74,7 @@ const Navbar = () => {
                                 className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52'>
 
 
-                                <p className="ml-4 mb-4 cursor-pointer hover:bg-gray-200 block py-1 hover:rounded-md">Update Profile</p>
+                                <Link to='/update-profile'><p className="ml-4 mb-4 cursor-pointer hover:bg-gray-200 block py-1 hover:rounded-md">Update Profile</p></Link>
                                 <Link to='/dashboard'>
                                     <p className="ml-4 mb-4 cursor-pointer hover:bg-gray-200 block py-1 hover:rounded-md">Dashboard</p>
                                 </Link>

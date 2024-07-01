@@ -1,5 +1,5 @@
 import { HiMenuAlt1 } from "react-icons/hi"
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import useAdmin from "../../../Hooks/useAdmin"
 import useSeller from "../../../Hooks/useSeller";
 import useUser from "../../../Hooks/useUser";
@@ -21,7 +21,7 @@ const DashboardNav = () => {
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 min-h-full bg-[#6861CE] text-base-content text-lg gap-y-6">
-                        <img className="w-[220px]" src={logo} />
+                        <Link to="/"><img className="w-[220px]" src={logo} /></Link>
                         {/* Admin Routes */}
                         {
                             isAdmin && <>

@@ -12,6 +12,7 @@ import { Pagination } from 'swiper/modules';
 import Container from '../../../../Shared/Container/Container';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosPublic from '../../../../Hooks/useAxiosPublic';
+import LoadingSpinner from '../../../../Shared/loading/LoadingSpinner';
 
 
 
@@ -19,14 +20,14 @@ import useAxiosPublic from '../../../../Hooks/useAxiosPublic';
 const Discount = () => {
     const axiosPublic = useAxiosPublic()
 
-    const { data: discountMedicine = [] } = useQuery({
+    const { data: discountMedicine = [], isLoading } = useQuery({
         queryKey: ['discountMedicine'],
         queryFn: async () => {
             const res = await axiosPublic.get('medicine')
             return res.data
         }
     })
-
+    if(isLoading) return <LoadingSpinner />
     return (
         <Container>
             <>

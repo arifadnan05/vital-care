@@ -23,7 +23,11 @@ const CheckOutForm = () => {
     const [cart, refetch] = useCart()
     const navigate = useNavigate()
     const { user } = useAuth()
-    const totalPrice = cart.reduce((total, item) => total + parseInt(item.unit_price), 0)
+    const totalPrice = cart.reduce((total, item) => {
+        const discountedPrice = parseFloat(item.unit_price) * (1 - item.discount / 100);
+        const itemTotal = discountedPrice * item.quantity;
+        return total + itemTotal;
+    }, 0);
 
 
     useEffect(() => {
@@ -99,7 +103,7 @@ const CheckOutForm = () => {
 
         }
         else {
-            console.log('paymentIntent', paymentIntent);
+            // console.log('paymentIntent', paymentIntent);
 
             // payment success
             if (paymentIntent.status === 'succeeded') {
@@ -122,7 +126,7 @@ const CheckOutForm = () => {
 
 
                 const res = await axiosSecure.post('/payments', payment)
-                console.log('payment save', res.data)
+                // console.log('payment save', res.data)
                 refetch()
 
                 if (res.data?.paymentResult?.insertedId) {

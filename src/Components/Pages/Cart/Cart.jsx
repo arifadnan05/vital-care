@@ -85,7 +85,7 @@ const Cart = () => {
                 <div className="flex flex-col justify-center items-end space-y-10">
                     <div className="flex space-x-16">
                         <h2 className="text-2xl">Your Subtotal: { }</h2>
-                        <h3 className="text-2xl">${totalPrice}</h3>
+                        <h3 className="text-2xl">${totalPrice.toFixed(2)}</h3>
                     </div>
                     <div>
                         <Link to='/payment'><button className="btn btn-neutral">Pay Now</button></Link>

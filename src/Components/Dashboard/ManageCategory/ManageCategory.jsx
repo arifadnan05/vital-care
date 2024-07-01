@@ -4,6 +4,8 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure"
 import Swal from "sweetalert2"
 import { useQuery } from "@tanstack/react-query"
 import { FaEdit, FaRegTrashAlt } from "react-icons/fa"
+import LoadingSpinner from "../../../Shared/loading/LoadingSpinner"
+import { Link } from "react-router-dom"
 
 const ManageCategory = () => {
     const axiosSecure = useAxiosSecure()
@@ -43,11 +45,16 @@ const ManageCategory = () => {
         }
         catch (error) {
 
-            console.log(error.message)
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: '<a href="#">Why do I have this issue?</a>'
+            });
         }
     }
 
-    const { data: allCategory = [], refetch } = useQuery({
+    const { data: allCategory = [], refetch, isLoading } = useQuery({
         queryKey: ['allCategory'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/category`)
@@ -77,7 +84,7 @@ const ManageCategory = () => {
         }
     }
 
-
+    if (isLoading) return <LoadingSpinner />
     return (
         <div>
             <div className="flex justify-center mt-4">
@@ -152,7 +159,7 @@ const ManageCategory = () => {
                                     </div>
                                 </td>
                                 <td>
-                                    <button className="btn btn-ghost text-2xl"><FaEdit /></button>
+                                    <Link to={`/dashboard/update-category/${item._id}`}><button className="btn btn-ghost text-2xl"><FaEdit /></button></Link>
                                 </td>
                                 <th>
                                     <button onClick={() => handleDeleteCategory(item._id)} className="btn btn-ghost text-2xl bg-red-900 text-white"><FaRegTrashAlt /></button>

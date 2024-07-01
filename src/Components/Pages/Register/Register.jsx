@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 import SocialLogin from '../SocialLogin/SocialLogin'
 import useAxiosSecure from '../../../Hooks/useAxiosSecure'
 import { Helmet } from 'react-helmet-async'
+import Swal from 'sweetalert2'
 
 const Register = () => {
     const navigate = useNavigate();
@@ -44,7 +45,12 @@ const Register = () => {
             toast.success('SignUp Success')
 
         } catch (err) {
-            console.log(err)
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: '<a href="#">Why do I have this issue?</a>'
+              });
         }
 
     }

@@ -24,6 +24,8 @@ import UserPaymentHistory from "../Components/Dashboard/UserPaymentHistory/UserP
 import AdminRoute from "./AdminRoute";
 import SellerRoute from "./SellerRoute";
 import ErrorPage from "../Components/Pages/ErrorPage/ErrorPage";
+import UpdateProfile from "../Components/Pages/UpdateProfile/UpdateProfile";
+import UpdateCategory from "../Components/Dashboard/ManageCategory/UpdateCategory/UpdateCategory";
 
 const router = createBrowserRouter([
     {
@@ -63,6 +65,10 @@ const router = createBrowserRouter([
                 path: '/category/:category',
                 element: <HomeCategoryDetails></HomeCategoryDetails>,
                 loader: ({ params }) => fetch(`https://vital-care-nu.vercel.app/category/${params.category}`)
+            },
+            {
+                path: '/update-profile',
+                element: <UpdateProfile></UpdateProfile>
             }
         ]
     },
@@ -115,7 +121,12 @@ const router = createBrowserRouter([
             },
             {
                 path: 'user-payment-history',
-                element: <UserPaymentHistory></UserPaymentHistory>
+                element: <PrivetRoute><UserPaymentHistory></UserPaymentHistory></PrivetRoute>
+            },
+            {
+                path: 'update-category/:id',
+                element: <AdminRoute><UpdateCategory></UpdateCategory></AdminRoute>,
+                loader: ({ params }) => fetch(`https://vital-care-nu.vercel.app/category/${params.id}`)
             }
         ]
     }

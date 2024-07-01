@@ -2,11 +2,12 @@ import { useQuery } from "@tanstack/react-query"
 import useAxiosSecure from "../../../Hooks/useAxiosSecure"
 import Swal from "sweetalert2"
 import { FaRegTrashAlt } from "react-icons/fa"
+import LoadingSpinner from "../../../Shared/loading/LoadingSpinner"
 
 const AdminBannerManage = () => {
 
     const axiosSecure = useAxiosSecure()
-    const { data: bannerPendingStatus = [], refetch } = useQuery({
+    const { data: bannerPendingStatus = [], refetch, isLoading } = useQuery({
         queryKey: ['bannerPendingStatus'],
         queryFn: async () => {
             const res = await axiosSecure.get('/advertisement')
@@ -26,7 +27,7 @@ const AdminBannerManage = () => {
                         timer: 1500
                     });
                 }
-                console.log(res.data)
+                // console.log(res.data)
             })
 
     }
@@ -55,7 +56,7 @@ const AdminBannerManage = () => {
 
 
 
-
+    if(isLoading) return <LoadingSpinner />
     return (
         <div className="overflow-x-auto">
             <table className="table">

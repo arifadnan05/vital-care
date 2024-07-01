@@ -6,6 +6,7 @@ import useAuth from '../../../Hooks/useAuth'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { Helmet } from 'react-helmet-async'
+import Swal from 'sweetalert2'
 const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
@@ -24,7 +25,12 @@ const Login = () => {
             toast.success('Login Successful')
 
         } catch (err) {
-            console.log(err)
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!",
+                footer: '<a href="#">Why do I have this issue?</a>'
+              });
         }
     }
     return (

@@ -1,6 +1,9 @@
 import DataTable from "react-data-table-component";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
+import Swal from "sweetalert2";
 
 const SalesReport = () => {
 
@@ -10,6 +13,19 @@ const SalesReport = () => {
     queryFn: async () => {
       const res = await axiosSecure.get(`/payments`)
       return res.data
+    }
+  })
+
+  const pdfRef = useRef()
+  const handleGeneratePdf = useReactToPrint({
+    content: () => pdfRef.current,
+    documentTitle: "appliedJob",
+    onAfterPrint: () => {
+      Swal.fire({
+        title: "Congratulations!",
+        text: "Download Successfully",
+        icon: "success"
+      });
     }
   })
 
@@ -44,12 +60,17 @@ const SalesReport = () => {
 
 
   return (
-      <div className="overflow-x-auto mt-10">
+    <div>
+      <div ref={pdfRef} className="overflow-x-auto mt-10">
         <DataTable
           columns={columns}
           data={salesReport}
         ></DataTable>
       </div>
+      <div className="flex justify-center mt-7">
+        <button onClick={handleGeneratePdf} className="btn btn-neutral">Download PDF</button>
+      </div>
+    </div>
   )
 }
 
